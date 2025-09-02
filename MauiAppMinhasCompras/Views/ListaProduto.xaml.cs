@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using MauiAppMinhasCompras.Models;
 
 namespace MauiAppMinhasCompras.Views;
@@ -10,7 +9,6 @@ public partial class ListaProduto : ContentPage
 	public ListaProduto()
 	{
 		InitializeComponent();
-
 		lst_produtos.ItemsSource = lista;
 	}
 
@@ -18,11 +16,10 @@ public partial class ListaProduto : ContentPage
     {
 		lista.Clear();
 		List<Produto> tmp = await App.Db.GetAll();
-
 		tmp.ForEach(i => lista.Add(i));
     }
 
-    private void ToolbarItem_Clicked(object sender, EventArgs e)
+    private void ToolbarItem_Clicked(object sender, EventArgs e)  // Adicionar produtos novos
     {
 		try
 		{
@@ -34,7 +31,7 @@ public partial class ListaProduto : ContentPage
 		}
     }
 
-    private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
+    private async void txt_search_TextChanged(object sender, TextChangedEventArgs e) //Para fazer a busca dos produtos
     {
 		try
 		{
@@ -50,7 +47,7 @@ public partial class ListaProduto : ContentPage
 		
     }
 
-    private void ToolbarItem_Clicked_1(object sender, EventArgs e)
+    private void ToolbarItem_Clicked_1(object sender, EventArgs e) //Fazer a soma dos valores dos produtos
     {
 		double soma = lista.Sum(i => i.Total);
 
@@ -59,7 +56,7 @@ public partial class ListaProduto : ContentPage
 		DisplayAlert("Total dos Produtos", msg, "OK");
     }
 
-    private async void MenuItem_Clicked(object sender, EventArgs e)
+    private async void MenuItem_Clicked(object sender, EventArgs e) //Remover um produto da lista
     {
 		try 
 		{
@@ -83,7 +80,7 @@ public partial class ListaProduto : ContentPage
 		}
     }
 
-    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e) //Editar os produtos
     {
 		try 
 		{
