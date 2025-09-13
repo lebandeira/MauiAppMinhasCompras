@@ -5,15 +5,35 @@
              Title="Lista Produto">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Relatório" Clicked="ToolbarItem_Clicked_2"/>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
         <SearchBar x:Name="txt_search" 
-                   Margin="-15, 0, 0, 0"
+                   Margin="0, 0, 0, 0"
                    Placeholder="Busca de Produtos"
                    TextChanged="txt_search_TextChanged"/>
+
+        <Label Text="Filtrar por Categoria" />
+        <Picker x:Name="picker_categoria_filtro"
+                SelectedIndexChanged="picker_categoria_filtro_SelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type= "{x:Type x:String}">
+                    <x:String>Todos</x:String>
+                    <x:String>Alimentos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Eletrônicos</x:String>
+                    <x:String>Roupas</x:String>
+                    <x:String>Objetos</x:String>
+                    <x:String>Outros</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+            
+        </Picker>
+
+
         <Frame Padding="0" Margin="10" VerticalOptions="Fill">
         <ListView x:Name="lst_produtos" 
                   IsPullToRefreshEnabled="True"
@@ -21,13 +41,14 @@
                   IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                   ItemSelected="lst_produtos_ItemSelected" >
             <ListView.Header>
-                <Grid ColumnDefinitions="*, *, *, *, *, *"
+                <Grid ColumnDefinitions="*, *, *, *, *, *, *"
                       BackgroundColor="Beige">                    
                     <Label Grid.Column="0" Text="ID" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <Label Grid.Column="1" Text="Descrição" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="2" Text="Preço" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="3" Text="Quantidade" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="4" Text="Total" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="2" Text="Categoria" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="3" Text="Preço" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="4" Text="Quantidade" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="5" Text="Total" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Grid>                
             </ListView.Header>                         
             <ListView.ItemTemplate>
@@ -36,12 +57,13 @@
                         <ViewCell.ContextActions>
                             <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/> 
                         </ViewCell.ContextActions>
-                        <Grid ColumnDefinitions="*, *, *, *, *, *">
+                        <Grid ColumnDefinitions="*, *, *, *, *, *, *">
                             <Label Grid.Column="0" Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Label Grid.Column="1" Text="{Binding Descricao}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                            <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{}{0:c}'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <Label Grid.Column="3" Text="{Binding Quantidade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <Label Grid.Column="4" Text="{Binding Total, StringFormat='{}{0:c}'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Categoria}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="3" Text="{Binding Preco, StringFormat='{}{0:c}'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="4" Text="{Binding Quantidade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="5" Text="{Binding Total, StringFormat='{}{0:c}'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Grid>
                     </ViewCell>               
                 </DataTemplate>                

@@ -16,6 +16,21 @@
         <Label Text="Quantidade: "/>
         <Entry x:Name="txt_quantidade" Keyboard="Numeric"/>
 
+        <Label Text="Categoria:"/>
+        <Picker x:Name="picker_categoria">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Alimentos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Eletrônicos</x:String>
+                    <x:String>Roupas</x:String>
+                    <x:String>Objetos</x:String>
+                    <x:String>Outros</x:String>         
+                    
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
         <Label Text="Preço Unitário: "/>
         <Entry x:Name="txt_preco" Keyboard="Numeric"/>
 
